@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmajis/plantuml-previewer.git"
+    "url": "git+https://github.com/tonychol/plantuml-previewer.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mmajis/plantuml-previewer/issues"
+    "url": "https://github.com/tonychol/plantuml-previewer/issues"
   },
-  "homepage": "https://github.com/mmajis/plantuml-previewer#readme",
+  "homepage": "https://github.com/tonychol/plantuml-previewer#readme",
   "dependencies": {},
   "devDependencies": {
     "html-minifier": "^3.5.12"
