@@ -1,26 +1,21 @@
 <template>
-  <div id="container"></div>
+  <div id="editor">some text</div>
 </template>
 
 <script>
-import * as monaco from "monaco-editor";
+import * as ace from "ace-builds";
 
 export default {
   name: "Editor",
   mounted() {
-    monaco.editor.create(document.getElementById("container"), {
-      value: ["function x() {", '\tconsole.log("Hello world!");', "}"].join(
-        "\n"
-      ),
-      language: "javascript"
-    });
+    ace.edit("editor");
   }
 };
 </script>
 
 <style>
-#container {
-  width: 600px;
-  height: 800px;
+#editor {
+  width: 100%;
+  height: 100%;
 }
 </style>
