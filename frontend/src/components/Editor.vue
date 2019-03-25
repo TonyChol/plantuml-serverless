@@ -12,7 +12,7 @@
 
 <script>
 import * as ace from "ace-builds";
-import { compress, decompress } from "../helpers/compress";
+import { compress } from "../helpers/compress";
 
 const SERVICE_ENDPOINT = `https://0mmjil7108.execute-api.us-west-1.amazonaws.com/plantuml`;
 
