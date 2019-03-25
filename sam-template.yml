@@ -18,17 +18,7 @@ Resources:
           info:
             title:
               Ref: AWS::StackName
-          paths:
-            "/":
-              get: 
-                x-amazon-apigateway-integration:
-                  responses:
-                    default:
-                      statusCode: 200
-                  uri:
-                    Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${UIFunction.Arn}/invocations"
-                  httpMethod: POST
-                  type: aws_proxy                
+          paths:                
             "/png/{encodedUml}":
               get:
                 x-amazon-apigateway-integration:
