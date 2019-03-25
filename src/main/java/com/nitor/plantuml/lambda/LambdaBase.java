@@ -7,13 +7,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.awt.*;
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Base64;
@@ -35,7 +32,8 @@ class LambdaBase {
     PropertyConfigurator.configure(String.format("log4j-%s.properties", stage));
 
     if (System.getenv(LAMBDA_TASK_ROOT) == null) {
-      logger.error(String.format("%s environment variable is not set. Rendering without graphviz dot!", LAMBDA_TASK_ROOT));
+      logger.error(
+          String.format("%s environment variable is not set. Rendering without graphviz dot!", LAMBDA_TASK_ROOT));
     } else {
       String taskRootDotPath = String.format("%s/dot_static", System.getenv(LAMBDA_TASK_ROOT));
       try {
@@ -44,7 +42,9 @@ class LambdaBase {
         Files.setPosixFilePermissions(dotFile.toPath(), PosixFilePermissions.fromString("rwxr-xr-x"));
         System.setProperty(GRAPHVIZ_DOT, DOT_PATH);
       } catch (IOException e) {
-        logger.error(String.format("Failed to copy graphviz dot executable to %s. Rendering without graphviz dot!", DOT_PATH), e);
+        logger.error(
+            String.format("Failed to copy graphviz dot executable to %s. Rendering without graphviz dot!", DOT_PATH),
+            e);
       }
     }
     logger.debug(String.format("GRAPHVIZ_DOT system property: %s", System.getProperty(GRAPHVIZ_DOT)));
@@ -64,8 +64,7 @@ class LambdaBase {
           .forEach(path -> logger.debug(String.format("File: %s", path)));
 
       Files.list(FileSystems.getDefault().getPath(System.getenv(LAMBDA_TASK_ROOT)))
-          .filter(path -> path.toString().endsWith(".otf") || path.toString().endsWith(".ttf"))
-          .forEach(path -> {
+          .filter(path -> path.toString().endsWith(".otf") || path.toString().endsWith(".ttf")).forEach(path -> {
             try {
               ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, path.toFile()));
               logger.debug(String.format("Registered font %s", path.toString()));
@@ -81,12 +80,14 @@ class LambdaBase {
   }
 
   @SuppressWarnings("unchecked")
-  void sendOKDiagramResponse(OutputStream outputStream, String base64Response, DiagramType diagramType) throws IOException {
+  void sendOKDiagramResponse(OutputStream outputStream, String base64Response, DiagramType diagramType)
+      throws IOException {
     sendDiagramResponse(outputStream, base64Response, diagramType, String.valueOf(HttpStatus.SC_OK));
   }
 
   @SuppressWarnings("unchecked")
-  void sendDiagramResponse(OutputStream outputStream, String base64Response, DiagramType diagramType, String statusCode) throws IOException {
+  void sendDiagramResponse(OutputStream outputStream, String base64Response, DiagramType diagramType, String statusCode)
+      throws IOException {
     JSONObject responseJson = new JSONObject();
 
     JSONObject headerJson = new JSONObject();

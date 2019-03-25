@@ -97,20 +97,6 @@ Resources:
                   contentHandling: CONVERT_TO_BINARY
           x-amazon-apigateway-binary-media-types:
             - "*/*"
-  UIFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: com.nitor.plantuml.lambda.UIHandler::handleRequest
-      CodeUri: !Ref paramCodeUri
-      Timeout: 20
-      CodeUri: target/plantuml-serverless-0.0.6-SNAPSHOT.jar
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /
-            Method: get
-            RestApiId: !Ref PlantUMLAPI
 
   PngFunction:
     Type: AWS::Serverless::Function

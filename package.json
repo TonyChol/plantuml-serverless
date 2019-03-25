@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmajis/plantuml-serverless.git"
+    "url": "git+https://github.com/TonyChol/plantuml-serverless.git"
   },
   "keywords": [
     "plantuml",
@@ -25,7 +25,7 @@
   "author": "Mika Majakorpi",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/mmajis/plantuml-serverless/issues"
+    "url": "https://github.com/TonyChol/plantuml-serverless/issues"
   },
-  "homepage": "https://github.com/mmajis/plantuml-serverless#readme"
+  "homepage": "https://github.com/TonyChol/plantuml-serverless#readme"
 }
