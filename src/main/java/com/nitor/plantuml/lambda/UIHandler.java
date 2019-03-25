@@ -9,15 +9,15 @@ import org.json.simple.JSONObject;
 import java.io.*;
 import java.util.stream.Stream;
 
-public class UIHandler extends LambdaBase implements RequestStreamHandler  {
+public class UIHandler extends LambdaBase implements RequestStreamHandler {
 
   private static final Logger logger = Logger.getLogger(UIHandler.class);
-  private static final String CONTENT_CLASSPATH = "/ui/index.html";
+  private static final String CONTENT_CLASSPATH = "/frontend/dist/index.html";
 
   @Override
   public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
     JSONObject event = parseEvent(inputStream);
-    String path = (String)((JSONObject)event.get("requestContext")).get("path");
+    String path = (String) ((JSONObject) event.get("requestContext")).get("path");
     logger.debug("Path: " + path);
     if (path != null && !path.endsWith("/")) {
       sendRedirectResponse(outputStream, path + "/");
