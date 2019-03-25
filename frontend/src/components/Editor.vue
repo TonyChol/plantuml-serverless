@@ -5,7 +5,9 @@
       <button v-on:click="renderUMLSvg(editor)">render svg</button>
     </div>
     <div class="right">
-      <img :src="svgUrl" alt="UML result">
+      <div id="preview-section">
+        <img :src="svgUrl" alt="UML result">
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +70,12 @@ export default {
   display: block;
   width: 50%;
   height: 100%;
+}
+
+#preview-section {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
 }
 
 #editor {
