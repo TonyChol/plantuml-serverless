@@ -1,5 +1,7 @@
 import pako from "pako";
 
+// Inferred from https://www.planttext.com/js/jquery-plantuml/plantuml.js
+
 const inflate = data => {
   return pako.inflateRaw(data, { to: "string" });
 };
