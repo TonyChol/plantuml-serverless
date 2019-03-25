@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Editor code="uml code"/>
+    <Editor code="bob->Alice: hello"/>
   </div>
 </template>
 

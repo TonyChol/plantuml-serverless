@@ -7,12 +7,16 @@
 
 <script>
 import * as ace from "ace-builds";
+import { compress, decompress } from "../helpers/compress";
 
 export default {
   name: "Editor",
   props: ["code"],
   mounted() {
-    ace.edit("editor");
+    const editor = ace.edit("editor");
+    const uml = editor.getValue() || "Alice->Bob: hello";
+    const encodedUML = compress(uml);
+    console.log(`encoded uml = ${encodedUML}`);
   }
 };
 </script>
