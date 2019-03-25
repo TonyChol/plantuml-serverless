@@ -13,9 +13,9 @@ show-frontend-ssl-url:
 release-frontend:
 	make build-frontend
 	make deploy-frontend
-	@echo ========================
-	@echo Frontend has been built!
-	@echo ========================
+	@echo =============================================
+	@echo    Frontend has been built and deployed!
+	@echo =============================================
 	make show-frontend-ssl-url
 
 frontend-dev:

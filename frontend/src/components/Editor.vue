@@ -2,7 +2,7 @@
   <div id="editor-container">
     <div class="left">
       <div id="editor">{{code}}</div>
-      <button v-on:click="renderUMLSvg">render svg</button>
+      <button v-on:click="renderUMLSvg(editor)">render svg</button>
     </div>
     <div class="right">
       <img :src="svgUrl" alt="UML result">
@@ -25,19 +25,27 @@ export default {
   props: ["code"],
   data() {
     return {
-      svgUrl: ""
+      svgUrl: "",
+      editor: null
     };
   },
   methods: {
-    renderUMLSvg() {
-      const editor = ace.edit("editor");
-      const uml = editor.getValue() || "Alice->Bob: hello";
+    renderEditor() {
+      this.editor = ace.edit("editor");
+      this.editor.setOptions({
+        wrapBehavioursEnabled: true,
+        wrap: true
+      });
+    },
+    renderUMLSvg(editor) {
+      const uml = (editor && editor.getValue()) || "Alice->Bob: hello";
       const encodedUML = compress(uml);
       this.svgUrl = makeSVGUrl(encodedUML);
     }
   },
   mounted() {
-    this.renderUMLSvg();
+    this.renderEditor();
+    this.renderUMLSvg(this.editor);
   }
 };
 </script>
