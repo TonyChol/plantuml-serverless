@@ -2,7 +2,7 @@
   <div id="editor-container">
     <div class="left">
       <div id="editor">{{code}}</div>
-      <button v-on:click="renderUMLSvg(editor)">render svg</button>
+      <button v-on:click="renderUMLSvg(editor)">Render svg</button>
     </div>
     <div class="right">
       <div id="preview-section">
@@ -82,5 +82,6 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+  border: 1px solid #efefef;
 }
 </style>
