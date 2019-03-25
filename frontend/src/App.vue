@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div id="navigation">
+      <a href="/">PlantUML</a>
+    </div>
     <Editor code="bob->Alice: hello"/>
   </div>
 </template>
@@ -22,6 +25,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 95%;
+  margin: auto;
+}
+
+a:visited {
+  text-decoration: none;
+  color: yellowgreen;
+}
+a {
+  color: yellowgreen;
+}
+
+#navigation {
+  width: 100%;
+  height: 60px;
+  font-size: 2em;
+  text-align: left;
 }
 </style>
