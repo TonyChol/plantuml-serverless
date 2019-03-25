@@ -8,8 +8,7 @@ deploy-frontend:
 	aws s3 sync ./frontend/dist/ s3://$(AWS_WEBSITE_BUCKET)
 
 show-frontend-ssl-url:
-	@echo https://s3.us-west-1.amazonaws.com/$(AWS_WEBSITE_BUCKET)/index.html
-
+	@echo http://$(AWS_WEBSITE_BUCKET).s3-website-us-west-1.amazonaws.com/
 release-frontend:
 	make build-frontend
 	make deploy-frontend
