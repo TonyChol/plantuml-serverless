@@ -9,6 +9,7 @@ deploy-frontend:
 
 show-frontend-ssl-url:
 	@echo http://$(AWS_WEBSITE_BUCKET).s3-website-us-west-1.amazonaws.com/
+
 release-frontend:
 	make build-frontend
 	make deploy-frontend
@@ -16,3 +17,6 @@ release-frontend:
 	@echo Frontend has been built!
 	@echo ========================
 	make show-frontend-ssl-url
+
+frontend-dev:
+	cd frontend; npm run serve
