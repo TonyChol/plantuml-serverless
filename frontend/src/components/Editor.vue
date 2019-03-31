@@ -1,12 +1,19 @@
 <template>
   <div id="editor-container">
     <div class="left">
+        <div id="navigation">
+          <a href="/" class="navigation__logo">PlantUML</a>
+          <button v-on:click="renderUMLSvg(editor)" class="navigation__button">Render svg</button>
+        </div>
       <div id="editor">{{code}}</div>
-      <button v-on:click="renderUMLSvg(editor)">Render svg</button>
+      
     </div>
     <div class="right">
-      <div id="preview-section">
-        <img :src="svgUrl" alt="UML result">
+      <div id="preview-section" v-lazyload class="image__wrapper">
+      <ImageSpinner
+        class="image__spinner"
+      />
+        <img :data-url="svgUrl" alt="UML result" class="image__item">
       </div>
     </div>
   </div>
@@ -14,6 +21,7 @@
 
 <script>
 import * as ace from "ace-builds";
+import ImageSpinner from "./ImageSpinner";
 import { compress } from "../helpers/compress";
 
 const SERVICE_ENDPOINT = `https://0mmjil7108.execute-api.us-west-1.amazonaws.com/plantuml`;
@@ -25,6 +33,9 @@ const makeSVGUrl = compressedString => {
 export default {
   name: "Editor",
   props: ["code"],
+  components: {
+    ImageSpinner
+  },
   data() {
     return {
       svgUrl: "",
@@ -52,24 +63,42 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+#navigation {
+  width: 100%;
+  height: 60px;
+  font-size: 2em;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.navigation__logo {
+  width: 80%;
+}
+
+.navigation__button {
+  width: 20%;
+}
+
+
 #editor-container {
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
 
 .left {
   display: block;
   float: left;
   width: 50%;
-  height: 100%;
+  height: 100vh;
 }
 
 .right {
   float: right;
   display: block;
   width: 50%;
-  height: 100%;
+  height: 100vh;
 }
 
 #preview-section {
@@ -83,5 +112,34 @@ export default {
   width: 100%;
   height: 100%;
   border: 1px solid #efefef;
+}
+
+.image {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.loaded {
+      .image {
+        &__item {
+          visibility: visible;
+          opacity: 1;
+          border: 0;
+        }
+
+        &__spinner {
+          display: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__item {
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 </style>

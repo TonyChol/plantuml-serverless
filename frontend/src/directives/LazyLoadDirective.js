@@ -6,6 +6,26 @@ export default {
       );
 
       if (imageElement) {
+        const attributeObserver = new MutationObserver(
+          (mutationList, observer) => {
+            mutationList.forEach(mutation => {
+              if (
+                mutation.type === "attributes" &&
+                mutation.attributeName === "data-url"
+              ) {
+                console.log(mutation);
+                console.log("attribute changed");
+                el.classList.remove("loaded");
+                imageElement.src = imageElement.dataset.url;
+              }
+            });
+          }
+        );
+
+        attributeObserver.observe(imageElement, {
+          attributes: true
+        });
+
         imageElement.addEventListener("load", () => {
           setTimeout(() => el.classList.add("loaded"), 100);
         });

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div id="navigation">
-      <a href="/">PlantUML</a>
-    </div>
     <Editor code="bob->Alice: hello"/>
   </div>
 </template>
@@ -37,10 +34,5 @@ a {
   color: yellowgreen;
 }
 
-#navigation {
-  width: 100%;
-  height: 60px;
-  font-size: 2em;
-  text-align: left;
-}
+
 </style>
