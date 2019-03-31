@@ -64,9 +64,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+$navigation-height: 60px;
+$editor-height: calc(100vh - 80px);
 #navigation {
   width: 100%;
-  height: 60px;
+  height: $navigation-height;
   font-size: 2em;
   text-align: left;
   display: flex;
@@ -110,7 +113,7 @@ export default {
 #editor {
   display: block;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: $editor-height;
   border: 1px solid #efefef;
 }
 
