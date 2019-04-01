@@ -6,11 +6,21 @@
 </template>
 
 <style lang="scss" scoped>
+
+@mixin center-spinner($diameter) {
+  position: absolute;
+  width: $diameter;
+  height: $diameter;
+  top: 50%;
+  left: 50%;
+  margin-top: $diameter / 2 * (-1);
+  margin-left: $diameter / 2 * (-1);
+}
+
+$spinner-width: 64px;
 .ripple {
   display: inline-block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
+  @include center-spinner(64px);
 
   &__circle {
     position: absolute;

@@ -119,9 +119,7 @@ $editor-height: calc(100vh - 80px);
 
 .image {
   &__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 
     &.loaded {
       .image {
@@ -140,6 +138,9 @@ $editor-height: calc(100vh - 80px);
   }
 
   &__item {
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: all 0.4s ease-in-out;
     opacity: 0;
     visibility: hidden;
