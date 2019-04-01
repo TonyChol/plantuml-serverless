@@ -13,8 +13,6 @@ export default {
                 mutation.type === "attributes" &&
                 mutation.attributeName === "data-url"
               ) {
-                console.log(mutation);
-                console.log("attribute changed");
                 el.classList.remove("loaded");
                 imageElement.src = imageElement.dataset.url;
               }
@@ -29,7 +27,9 @@ export default {
         imageElement.addEventListener("load", () => {
           setTimeout(() => el.classList.add("loaded"), 100);
         });
-        imageElement.addEventListener("error", () => console.log("error"));
+        imageElement.addEventListener("error", () =>
+          console.log("image load error")
+        );
         imageElement.src = imageElement.dataset.url;
       }
     }

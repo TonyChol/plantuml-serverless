@@ -30,6 +30,12 @@ const makeSVGUrl = compressedString => {
   return `${SERVICE_ENDPOINT}/svg/${compressedString}`;
 };
 
+const setUMLInUrlParams = encodedUML => {
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.set('uml', encodedUML);
+  window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+}
+
 export default {
   name: "Editor",
   props: ["code"],
@@ -54,6 +60,7 @@ export default {
       const uml = (editor && editor.getValue()) || "Alice->Bob: hello";
       const encodedUML = compress(uml);
       this.svgUrl = makeSVGUrl(encodedUML);
+      setUMLInUrlParams(encodedUML);
     }
   },
   mounted() {
