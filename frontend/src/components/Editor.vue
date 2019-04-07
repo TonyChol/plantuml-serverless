@@ -110,6 +110,7 @@ $editor-height: calc(100vh - 80px);
 
 .navigation__button {
   width: 20%;
+  font-size: 0.4em;
 }
 
 #editor-container {

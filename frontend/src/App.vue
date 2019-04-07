@@ -6,7 +6,7 @@
 
 <script>
 import Editor from "./components/Editor.vue";
-import {decompress} from "./helpers/compress";
+import { decompress } from "./helpers/compress";
 
 export default {
   name: "app",
@@ -16,7 +16,7 @@ export default {
   methods: {
     initialUML: function() {
       const urlParams = new URLSearchParams(window.location.search);
-      const encodedUML = urlParams.get('uml');
+      const encodedUML = urlParams.get("uml");
       const decodedUML = encodedUML && decompress(encodedUML);
       return decodedUML || "bob->Alice: hello";
     }
@@ -25,6 +25,9 @@ export default {
 </script>
 
 <style>
+body {
+  max-width: none;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,6 +45,4 @@ a:visited {
 a {
   color: yellowgreen;
 }
-
-
 </style>
