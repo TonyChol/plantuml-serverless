@@ -7,7 +7,7 @@
           v-on:click="renderUMLSvg(editor)"
           class="navigation__button"
           id="render_button"
-        >Render svg</button>
+        >Render</button>
       </div>
       <div id="editor">{{code}}</div>
     </div>
@@ -106,11 +106,11 @@ $editor-height: calc(100vh - 80px);
 
 .navigation__logo {
   width: 80%;
+  flex-grow: 1;
 }
 
 .navigation__button {
-  width: 20%;
-  font-size: 0.4em;
+  font-size: 0.5em;
 }
 
 #editor-container {
