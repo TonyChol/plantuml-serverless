@@ -3,7 +3,11 @@
     <div class="left">
       <div id="navigation">
         <a href="/" class="navigation__logo">PlantUML</a>
-        <button v-on:click="renderUMLSvg(editor)" class="navigation__button">Render svg</button>
+        <button
+          v-on:click="renderUMLSvg(editor)"
+          class="navigation__button"
+          id="render_button"
+        >Render svg</button>
       </div>
       <div id="editor">{{code}}</div>
     </div>
@@ -20,6 +24,7 @@
 import * as ace from "ace-builds";
 import ImageSpinner from "./ImageSpinner";
 import { compress } from "../helpers/compress";
+import tippy from "tippy.js";
 
 const SERVICE_ENDPOINT = `https://0mmjil7108.execute-api.us-west-1.amazonaws.com/plantuml`;
 
@@ -65,11 +70,20 @@ export default {
       const encodedUML = compress(uml);
       this.svgUrl = makeSVGUrl(encodedUML);
       setUMLInUrlParams(encodedUML);
+    },
+    setupRenderButtonTooptip() {
+      tippy("#render_button", {
+        content: "Press Command+Enter to render",
+        arrow: true,
+        arrowType: "round",
+        theme: "google"
+      });
     }
   },
   mounted() {
     this.renderEditor();
     this.renderUMLSvg(this.editor);
+    this.setupRenderButtonTooptip();
   }
 };
 </script>
