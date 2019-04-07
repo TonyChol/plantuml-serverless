@@ -25,8 +25,12 @@ import * as ace from "ace-builds";
 import ImageSpinner from "./ImageSpinner";
 import { compress } from "../helpers/compress";
 import tippy from "tippy.js";
+import { runningOS, OS } from "../helpers/os";
 
 const SERVICE_ENDPOINT = `https://0mmjil7108.execute-api.us-west-1.amazonaws.com/plantuml`;
+
+const currentOS = runningOS();
+const submitKeybinding = currentOS === OS.MAC ? "Cmd+Enter" : "Ctrl+Enter";
 
 const makeSVGUrl = compressedString => {
   return `${SERVICE_ENDPOINT}/svg/${compressedString}`;
@@ -73,7 +77,7 @@ export default {
     },
     setupRenderButtonTooptip() {
       tippy("#render_button", {
-        content: "Press Command+Enter to render",
+        content: `Press ${submitKeybinding} to render`,
         arrow: true,
         arrowType: "round",
         theme: "google"
