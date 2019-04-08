@@ -2,12 +2,17 @@
   <div id="editor-container">
     <div class="left">
       <div id="navigation">
-        <a href="/" class="navigation__logo">PlantUML</a>
+        <a href="/" class="navigation__logo">PlantUML Editor</a>
         <button
           v-on:click="renderUMLSvg(editor)"
           class="navigation__button"
           id="render_button"
         >Render</button>
+        <button
+          class="output__button"
+          id="js-markdown__button"
+          v-on:click="setupOutputMarkdownText()"
+        >Markdown</button>
       </div>
       <div id="editor">{{code}}</div>
     </div>
@@ -24,6 +29,7 @@
 import * as ace from "ace-builds";
 import ImageSpinner from "./ImageSpinner";
 import { compress } from "../helpers/compress";
+import { copyToClipboard } from "../helpers/clipboard";
 import tippy from "tippy.js";
 import { runningOS, OS } from "../helpers/os";
 
@@ -51,7 +57,8 @@ export default {
   data() {
     return {
       svgUrl: "",
-      editor: null
+      editor: null,
+      markdownTooltip: null
     };
   },
   methods: {
@@ -82,6 +89,28 @@ export default {
         arrowType: "round",
         theme: "google"
       });
+
+      this.markdownTooltip = tippy("#js-markdown__button", {
+        content: `Copied`,
+        arrow: true,
+        arrowType: "round",
+        theme: "google",
+        trigger: "manual"
+      });
+    },
+    setupOutputMarkdownText() {
+      this.renderUMLSvg(this.editor);
+      const markdownStr = `![](${this.svgUrl})\n\n[edit](${
+        window.location.href
+      })`;
+      copyToClipboard(markdownStr);
+      this.showMarkdownTooltip(1000);
+    },
+    showMarkdownTooltip(durationInMs) {
+      this.markdownTooltip && this.markdownTooltip[0].show(20);
+      setTimeout(() => {
+        this.markdownTooltip && this.markdownTooltip[0].hide();
+      }, durationInMs);
     }
   },
   mounted() {
@@ -107,6 +136,10 @@ $editor-height: calc(100vh - 80px);
 .navigation__logo {
   width: 80%;
   flex-grow: 1;
+}
+
+.output__button {
+  font-size: 0.5em;
 }
 
 .navigation__button {
