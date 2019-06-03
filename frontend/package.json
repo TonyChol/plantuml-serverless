@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "monaco-editor": "^0.16.1",
-    "tippy.js": "^4.3.1",
+    "tippy.js": "^4.3.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
