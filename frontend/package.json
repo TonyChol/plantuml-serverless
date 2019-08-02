@@ -25,7 +25,7 @@
     "pako": "^1.0.10",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.34.0"
+    "webpack": "^4.39.1"
   },
   "eslintConfig": {
     "root": true,
